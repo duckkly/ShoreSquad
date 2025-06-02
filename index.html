@@ -98,9 +98,17 @@
                 <p class="section-description">Discover beach cleanup events happening in your area</p>
                 
                 <div class="map-container">
-                    <!-- Map will be inserted here via JavaScript -->
-                    <div id="cleanup-map" class="map-placeholder">
-                        <p>Interactive map loading...</p>
+                    <!-- Embedded Google Maps with marker for Pasir Ris cleanup location -->
+                    <div id="cleanup-map" class="map-embed">
+                        <iframe 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            loading="lazy" 
+                            allowfullscreen 
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDEAksGkCudIOW4_dji1PhMc8lQ6dHmLzg&q=1.381497,103.955574&zoom=15&center=1.381497,103.955574">
+                        </iframe>
+                        <p class="map-note">Next Cleanup: Pasir Ris Beach - June 5, 2025</p>
                     </div>
                 </div>
                 
