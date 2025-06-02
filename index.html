@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShoreSquad - Rally your crew, track weather, and hit the next beach cleanup with our dope map app!">
+    <title>ShoreSquad - Beach Cleanup Community</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>Shore<span>Squad</span></h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#map">Map</a></li>
+                    <li><a href="#weather">Weather</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="cta-button">
+                    <a href="#join" class="btn-primary">Join Squad</a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Clean Beaches. <br>Build Community.</h2>
+                    <p>Rally your crew, track weather, and join the next beach cleanup with our interactive map app!</p>
+                    <div class="hero-buttons">
+                        <a href="#events" class="btn-primary">Find Cleanup Events</a>
+                        <a href="#create" class="btn-secondary">Start Your Own</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- Placeholder for hero image -->
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Events Section -->
+        <section id="events" class="events-section">
+            <div class="container">
+                <h2 class="section-title">Upcoming Cleanups</h2>
+                <div class="events-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="nearby">Nearby</button>
+                    <button class="filter-btn" data-filter="popular">Popular</button>
+                    <button class="filter-btn" data-filter="new">New</button>
+                </div>
+                
+                <div class="events-grid">
+                    <!-- Event cards will be dynamically generated here -->
+                    <div class="event-card">
+                        <div class="event-image">
+                            <div class="image-placeholder"></div>
+                            <span class="event-date">June 5</span>
+                        </div>
+                        <div class="event-details">
+                            <h3>Bondi Beach Cleanup</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Bondi Beach, Sydney</p>
+                            <p class="event-time"><i class="far fa-clock"></i> 9:00 AM - 12:00 PM</p>
+                            <p class="event-attendees"><i class="fas fa-users"></i> 24 people going</p>
+                            <a href="#" class="btn-secondary">Join Event</a>
+                        </div>
+                    </div>
+                    
+                    <!-- More event cards would go here -->
+                </div>
+                
+                <div class="view-more">
+                    <a href="#" class="btn-text">View More Events <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Map Section -->
+        <section id="map" class="map-section">
+            <div class="container">
+                <h2 class="section-title">Find Cleanups Near You</h2>
+                <p class="section-description">Discover beach cleanup events happening in your area</p>
+                
+                <div class="map-container">
+                    <!-- Map will be inserted here via JavaScript -->
+                    <div id="cleanup-map" class="map-placeholder">
+                        <p>Interactive map loading...</p>
+                    </div>
+                </div>
+                
+                <div class="map-features">
+                    <div class="feature">
+                        <i class="fas fa-search-location"></i>
+                        <h3>Locate Events</h3>
+                        <p>Find cleanups happening near your location</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-cloud-sun"></i>
+                        <h3>Weather Info</h3>
+                        <p>Check weather conditions for each event</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-route"></i>
+                        <h3>Get Directions</h3>
+                        <p>Easy navigation to event locations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Weather Section -->
+        <section id="weather" class="weather-section">
+            <div class="container">
+                <h2 class="section-title">Beach Weather Forecast</h2>
+                <p class="section-description">Plan your cleanup with the latest weather information</p>
+                
+                <div class="weather-widget">
+                    <!-- Weather information will be inserted here via JavaScript -->
+                    <div class="weather-placeholder">
+                        <p>Weather data loading...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Impact Section -->
+        <section id="impact" class="impact-section">
+            <div class="container">
+                <h2 class="section-title">Our Collective Impact</h2>
+                
+                <div class="impact-stats">
+                    <div class="stat">
+                        <h3 class="counter">145</h3>
+                        <p>Cleanups Completed</p>
+                    </div>
+                    <div class="stat">
+                        <h3 class="counter">3,750</h3>
+                        <p>Volunteers Mobilized</p>
+                    </div>
+                    <div class="stat">
+                        <h3 class="counter">12,890</h3>
+                        <p>kg of Trash Collected</p>
+                    </div>
+                    <div class="stat">
+                        <h3 class="counter">87</h3>
+                        <p>Beaches Improved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join Section -->
+        <section id="join" class="join-section">
+            <div class="container">
+                <div class="join-content">
+                    <h2>Join the Squad Today</h2>
+                    <p>Connect with like-minded individuals and make a difference for our oceans and beaches</p>
+                    <form class="signup-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit" class="btn-primary">Get Started</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Shore<span>Squad</span></h2>
+                    <p>Making beach cleanup fun, social, and impactful</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#events">Events</a></li>
+                            <li><a href="#map">Map</a></li>
+                            <li><a href="#weather">Weather</a></li>
+                            <li><a href="#about">About Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Connect</h3>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShoreSquad. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
