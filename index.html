@@ -119,11 +119,6 @@
                         <p>Find cleanups happening near your location</p>
                     </div>
                     <div class="feature">
-                        <i class="fas fa-cloud-sun"></i>
-                        <h3>Weather Info</h3>
-                        <p>Check weather conditions for each event</p>
-                    </div>
-                    <div class="feature">
                         <i class="fas fa-route"></i>
                         <h3>Get Directions</h3>
                         <p>Easy navigation to event locations</p>
@@ -136,12 +131,13 @@
         <section id="weather" class="weather-section">
             <div class="container">
                 <h2 class="section-title">Beach Weather Forecast</h2>
-                <p class="section-description">Plan your cleanup with the latest weather information</p>
+                <p class="section-description">Plan your cleanup with the latest weather information (°C, metric units)</p>
                 
                 <div class="weather-widget">
-                    <!-- Weather information will be inserted here via JavaScript -->
-                    <div class="weather-placeholder">
-                        <p>Weather data loading...</p>
+                    <div id="weather-forecast" class="weather-forecast-cards"></div>
+                    <div class="weather-placeholder" id="weather-loading">
+                        <div class="spinner"></div>
+                        <p>Loading weather forecast...</p>
                     </div>
                 </div>
             </div>
@@ -163,7 +159,7 @@
                     </div>
                     <div class="stat">
                         <h3 class="counter">12,890</h3>
-                        <p>kg of Trash Collected</p>
+                        <p>kilograms of Trash Collected</p>
                     </div>
                     <div class="stat">
                         <h3 class="counter">87</h3>
@@ -238,5 +234,111 @@
 
     <!-- JavaScript -->
     <script src="js/app.js"></script>
+    <script>
+    // Fetch and display 4-day weather forecast from NEA’s API
+    async function fetchWeatherForecast() {
+        const forecastContainer = document.getElementById('weather-forecast');
+        const loadingDiv = document.getElementById('weather-loading');
+        loadingDiv.style.display = 'block';
+        forecastContainer.innerHTML = '';
+        try {
+            // NEA 4-day weather forecast API endpoint
+            const resp = await fetch('https://api.data.gov.sg/v1/environment/4-day-weather-forecast');
+            const data = await resp.json();
+            if (data.items && data.items.length > 0) {
+                const forecasts = data.items[0].forecasts;
+                let html = '<div class="forecast-cards">';
+                forecasts.forEach(day => {
+                    html += `
+                    <div class="forecast-card">
+                        <div class="forecast-date">${day.date}</div>
+                        <div class="forecast-desc">${day.forecast}</div>
+                        <div class="forecast-temp">${day.temperature.low}&ndash;${day.temperature.high}&deg;C</div>
+                        <div class="forecast-humidity">Humidity: ${day.relative_humidity.low}&ndash;${day.relative_humidity.high}%</div>
+                    </div>`;
+                });
+                html += '</div>';
+                forecastContainer.innerHTML = html;
+            } else {
+                forecastContainer.innerHTML = '<p>No forecast data available.</p>';
+            }
+        } catch (e) {
+            forecastContainer.innerHTML = '<p class="error-message">Unable to load weather forecast. Please try again later.</p>';
+        } finally {
+            loadingDiv.style.display = 'none';
+        }
+    }
+    // Call the function on page load
+    fetchWeatherForecast();
+    </script>
+    <style>
+    .weather-forecast-cards .forecast-cards {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    .forecast-card {
+        background: linear-gradient(135deg, #e0f7fa 0%, #f4f8fb 100%);
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        padding: 1.2rem 1.8rem;
+        min-width: 180px;
+        max-width: 220px;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .forecast-card:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .forecast-date {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #0077b6;
+        font-size: 1.1rem;
+    }
+    .forecast-desc {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    .forecast-temp {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #009688;
+        margin-bottom: 0.3rem;
+    }
+    .forecast-humidity {
+        font-size: 1rem;
+        color: #555;
+    }
+    .weather-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1.5rem;
+    }
+    .spinner {
+        border: 4px solid #e0e0e0;
+        border-top: 4px solid #0077b6;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 0.7rem;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .error-message {
+        color: #d32f2f;
+        font-weight: 500;
+        margin-top: 1rem;
+    }
+    </style>
 </body>
 </html>
